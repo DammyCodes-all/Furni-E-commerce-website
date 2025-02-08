@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    {% block content %}
+    <h1>Hello {{name}}</h1>
+    Welcome to my addition website add two or more numbers together
+
+    <form action="add" method="post">
+
+        {% csrf_token %}{% endblock %} Enter your first number: <input type="num" name="num1">
+        <br> Enter Your Second number: <input type="num" name="num2"> <br>
+        <button type="submit">ADD</button>
+    </form>
+    Result: {{Result}}
+</body>
+
+</html>
