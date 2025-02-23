@@ -88,6 +88,17 @@ def Send_contact(request):
         return redirect('contact')
         
     return render(request, 'contact.html')
-
+@login_required
+def checkout(request):
+    cart_items = Cart.objects.filter(user=request.user)
+    cart_items_count = cart_items.count()
+    total = sum(item.total_price() for item in cart_items)
+    
+    context = {
+        'cart_items': cart_items,
+        'cart_items_count': cart_items_count,
+        'total': total
+    }
+    return render(request, 'checkout.html', context)
 
 
