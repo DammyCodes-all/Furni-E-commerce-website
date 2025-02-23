@@ -40,6 +40,26 @@
             overflow: hidden;
             border-right: 4px solid;
         }
+            /* ...existing styles... */
+            
+            .cart-icon-wrapper {
+                position: relative;
+                display: inline-block;
+            }
+            
+            .cart-counter {
+                position: relative; 
+                top: -10px;
+                right: 6px;
+                background-color: #ff0000;
+                color: white;
+                border-radius: 10px;
+                padding: 2px 5px;
+                font-size: 8px;
+                min-width: 18px;
+                text-align: center;
+                font-weight: bold;
+            }
 
         @keyframes typing {
             from {
@@ -66,7 +86,7 @@
     <nav class="custom-navbar navbar navbar navbar-expand-md navbar-dark bg-dark" arial-label="Furni navigation bar">
 
         <div class="container">
-            <a class="navbar-brand" href="index.html">Furni<span>.</span></a>
+            <a class="navbar-brand" href="/">Furni<span>.</span></a>
 
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarsFurni" aria-controls="navbarsFurni" aria-expanded="false" aria-label="Toggle navigation">
 					<span class="navbar-toggler-icon"></span>
@@ -86,19 +106,22 @@
                 </ul>
 
                 <ul class="custom-navbar-cta navbar-nav mb-2 mb-md-0 ms-5">
-                    <li>
-                        {% if user.is_authenticated %}
-                        <a class="nav-link nav-link-logout" href="accounts/logout">
+                    <ul class="custom-navbar-cta navbar-nav mb-2 mb-md-0 ms-5">
+						{% if user.is_authenticated %}
+							<li>
+								<a class="nav-link cart-icon-wrapper" href="/cart">
+									<i class="fas fa-shopping-cart"></i>
+									<span class="cart-counter">{{ cart_items_count }}</span>
+								</a>
+							</li>
+                        <a class="nav-link nav-link-logout" href="{% url 'logout' %}">
                             <i class="fas fa-sign-out-alt"></i> Logout
                         </a>
                         {% else %}
-                        <a class="nav-link" href="accounts/register"><img src="{% static 'images/user.svg'%}"></a>
-                    </li>
-                    <li>
-                        <a class="nav-link" href="cart.html"><img src=" {% static 'images/cart.svg' %}"></a>
-                    </li>
-                </ul>
-                {% endif %}
+						<li><a class="nav-link" href="{% url 'register' %}"><img src="{% static 'images/user.svg' %}"></a></li>
+						<li><a class="nav-link" href="/cart"><img src="{% static 'images/cart.svg' %}"></a></li>
+					  </ul>
+					  {% endif %}
             </div>
         </div>
 
@@ -120,12 +143,12 @@
                         <h2>Hello, {{user.first_name}}</h2>
                         {% endif %}
                         <h1>Modern Interior <span class="d-block">Design Studio</span></h1>
-                        <p class="mb-4">Donec vitae odio quis nisl dapibus malesuada. Nullam ac aliquet velit. Aliquam vulputate velit imperdiet dolor tempor tristique.</p>
-                        <p><a href="/shop" class="btn btn-secondary me-2">Shop Now</a><a href="" class="btn btn-white-outline">Explore</a></p>
+                        <p class="mb-4">At Furni, we blend innovation and elegance to create interiors that reflect your personality. Award-winning designs since 2010.</p>
+                        <p><a href="/shop" class="btn btn-secondary me-2">Shop Now</a><a href="/shop" class="btn btn-white-outline">Explore</a></p>
                     </div>
                 </div>
-                <div class="col-lg-7">
-                    <div class="hero-img-wrap">
+                <div class="col-lg-7 col-md-8 col-sm-12">
+                    <div class="hero-img-wrap row">
                         <img src="{% static 'images/couch.png'%}" class="img-fluid">
                     </div>
                 </div>
@@ -142,18 +165,17 @@
                 <!-- Start Column 1 -->
                 <div class="col-md-12 col-lg-3 mb-5 mb-lg-0">
                     <h2 class="mb-4 section-title">Crafted with excellent material.</h2>
-                    <p class="mb-4">Donec vitae odio quis nisl dapibus malesuada. Nullam ac aliquet velit. Aliquam vulputate velit imperdiet dolor tempor tristique. </p>
-                    <p><a href="shop.html" class="btn">Explore</a></p>
+                    <p class="mb-4">Designed for elegance. Crafted for comfort. Our premium furniture collection blends aesthetics with durability to elevate your home. </p>
+                    <p><a href="shop/" class="btn">Explore</a></p>
                 </div>
                 <!-- End Column 1 -->
-                {% for chair in val %}
+                {% for chair in random_items %}
                 <!-- Start Column 2 -->
                 <div class="col-12 col-md-4 col-lg-3 mb-5 mb-md-0">
-                    <a class="product-item" href="cart.html">
+                    <a class="product-item" href="{% url 'add_to_cart' chair.id %}">
                         <img src="{{chair.img.url}} " class="img-fluid product-thumbnail">
                         <h3 class="product-title">{{chair.name}}</h3>
                         <strong class="product-price">${{chair.price}}</strong>
-
                         <span class="icon-cross">
 								<img src="{% static 'images/cross.svg '%}" class="img-fluid">
 							</span>
@@ -185,7 +207,8 @@
                                     <img src="{% static 'images/truck.svg'%}" alt="Image" class="imf-fluid">
                                 </div>
                                 <h3>Fast &amp; Free Shipping</h3>
-                                <p>Donec vitae odio quis nisl dapibus malesuada. Nullam ac aliquet velit. Aliquam vulputate.</p>
+                                <p>Get your orders delivered quickly and at no extra cost!
+                                    We ensure timely shipping so you can enjoy your products without delay.</p>
                             </div>
                         </div>
 
@@ -195,7 +218,8 @@
                                     <img src="{% static 'images/bag.svg '%}" alt="Image" class="imf-fluid">
                                 </div>
                                 <h3>Easy to Shop</h3>
-                                <p>Donec vitae odio quis nisl dapibus malesuada. Nullam ac aliquet velit. Aliquam vulputate.</p>
+                                <p> A smooth and hassle-free shopping experience.
+                                    Our user-friendly platform makes it simple to browse, select, and order your favorite items.</p>
                             </div>
                         </div>
 
@@ -205,7 +229,8 @@
                                     <img src="{% static 'images/support.svg '%}" alt="Image" class="imf-fluid">
                                 </div>
                                 <h3>24/7 Support</h3>
-                                <p>Donec vitae odio quis nisl dapibus malesuada. Nullam ac aliquet velit. Aliquam vulputate.</p>
+                                <p> Need help? We’re always here for you!
+                                    Our dedicated support team is available 24/7 to assist with any inquiries or issues.</p>
                             </div>
                         </div>
 
@@ -215,7 +240,8 @@
                                     <img src="{% static 'images/return.svg '%}" alt="Image" class="imf-fluid">
                                 </div>
                                 <h3>Hassle Free Returns</h3>
-                                <p>Donec vitae odio quis nisl dapibus malesuada. Nullam ac aliquet velit. Aliquam vulputate.</p>
+                                <p>Not satisfied? No worries!
+                                    Enjoy a simple and stress-free return process with our flexible return policy.</p>
                             </div>
                         </div>
 

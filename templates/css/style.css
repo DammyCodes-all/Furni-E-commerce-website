@@ -1,4 +1,4 @@
-/*
+/* */
 * Template Name: UntreeStore
 * Template Author: Untree.co
 * Author URI: https://untree.co/
@@ -9,6 +9,24 @@ body {
   overflow-x: hidden;
   position: relative; }
 
+  .cart-icon-wrapper {
+    position: relative;
+    display: inline-block;
+}
+
+.cart-counter {
+    position: relative; 
+    top: -10px;
+    right: 6px;
+    background-color: #ff0000;
+    color: white;
+    border-radius: 10px;
+    padding: 2px 5px;
+    font-size: 8px;
+    min-width: 18px;
+    text-align: center;
+    font-weight: bold;
+}
 body {
   font-family: "Inter", sans-serif;
   font-weight: 400;
@@ -119,7 +137,7 @@ a {
         font-size: 54px; } }
   .hero p {
     color: rgba(255, 255, 255, 0.5);
-    margin-botom: 30px; }
+    margin-bottom: 30px; }
   .hero .hero-img-wrap {
     position: relative; }
     .hero .hero-img-wrap img {
@@ -144,20 +162,26 @@ a {
           left: 0px;
           top: -80px;
           right: -100px; } }
-    .hero .hero-img-wrap:after {
-      content: "";
-      position: absolute;
-      width: 255px;
-      height: 217px;
-      background-image: url("../images/dots-light.svg");
-      background-size: contain;
-      background-repeat: no-repeat;
-      right: -100px;
-      top: -0px; }
-      @media (min-width: 1200px) {
-        .hero .hero-img-wrap:after {
-          top: -40px; } }
 
+ .hero .hero-img-wrap:after {
+            content: "";
+            position: absolute;
+            width: 25%; /* Use percentages instead of fixed width */
+            height: 20%;
+            background-image: url("../images/dots-light.svg");
+            background-size: contain;
+            background-repeat: no-repeat;
+            right: 5%; /* Position dynamically */
+            top: 5%;
+        }
+        
+        @media (min-width: 1200px) {
+            .hero .hero-img-wrap:after {
+                top: -40px; 
+                right: -50px; /* Allow better alignment */
+            }
+        }
+        
 .btn {
   font-weight: 600;
   padding: 12px 30px;

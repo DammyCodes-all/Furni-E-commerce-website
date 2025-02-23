@@ -1,6 +1,6 @@
 from django.shortcuts import render, redirect 
 from django.contrib import messages
-from django.contrib.auth.models import User,auth
+from django.contrib.auth.models import User, auth
 
 def login(request):
     if request.method == 'POST':
@@ -36,7 +36,8 @@ def register(request):
             else:
                 user = User.objects.create_user(first_name=first_name, last_name=last_name, username=username, email=email, password=password1)
                 user.save()
-                messages.info(request,"User created. Login now...")
+                auth.login(request, user)
+                messages.info(request,"Registration Succesfull..")
                 return redirect('/')
         else:
             messages.info(request,"Password don't match")
