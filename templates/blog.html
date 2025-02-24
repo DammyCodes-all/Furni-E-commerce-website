@@ -17,8 +17,8 @@
   <meta name="author" content="Untree.co">
   <link rel="shortcut icon" href="{% static 'favicon.png' %}">
 
-  <meta name="description" content="" />
-  <meta name="keywords" content="bootstrap, bootstrap4" />
+  <meta name="description" content="Explore our latest blog posts on furniture and interior design." />
+  <meta name="keywords" content="furniture, interior design, home decor, modern furniture" />
 
         <!-- Bootstrap CSS -->
         <link href="{% static 'css/bootstrap.min.css' %}" rel="stylesheet">
@@ -27,7 +27,7 @@
         <link href="{% static 'css/style.css' %}" rel="stylesheet">
 		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
 
-        <title>Furni Free Bootstrap 5 Template for Furniture and Interior Design Websites by Untree.co </title>
+        <title>Furni - Blog on Furniture & Interior Design</title>
     </head>
 
     <body>
@@ -36,7 +36,7 @@
         <nav class="custom-navbar navbar navbar navbar-expand-md navbar-dark bg-dark" arial-label="Furni navigation bar">
 
             <div class="container">
-                <a class="navbar-brand" href="/blog">Furni<span>.</span></a>
+                <a class="navbar-brand" href="{% url 'index' %}">Furni<span>.</span></a>
 
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarsFurni" aria-controls="navbarsFurni" aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
@@ -45,19 +45,19 @@
                 <div class="collapse navbar-collapse" id="navbarsFurni">
                     <ul class="custom-navbar-nav navbar-nav ms-auto mb-2 mb-md-0">
                         <li class="nav-item">
-                            <a class="nav-link" href="/">Home</a>
+                            <a class="nav-link" href="{% url 'index' %}">Home</a>
                         </li>
-                        <li><a class="nav-link" href="/shop">Shop</a></li>
-                        <li><a class="nav-link" href="/about">About us</a></li>
-                        <li><a class="nav-link" href="/services">Services</a></li>
-                        <li class="active"><a class="nav-link" href="/blog">Blog</a></li>
-                        <li><a class="nav-link" href="/contact">Contact us</a></li>
+                        <li><a class="nav-link" href="{% url 'shop' %}">Shop</a></li>
+                        <li><a class="nav-link" href="{% url 'about' %}">About us</a></li>
+                        <li><a class="nav-link" href="{% url 'services' %}">Services</a></li>
+                        <li class="active"><a class="nav-link" href="{% url 'blog' %}">Blog</a></li>
+                        <li><a class="nav-link" href="{% url 'contact' %}">Contact us</a></li>
                     </ul>
 
 					<ul class="custom-navbar-cta navbar-nav mb-2 mb-md-0 ms-5">
                         {% if user.is_authenticated %}
                         <li>
-                            <a class="nav-link cart-icon-wrapper" href="/cart">
+                            <a class="nav-link cart-icon-wrapper" href="{% url 'cart' %}">
                                 <i class="fas fa-shopping-cart"></i>
                                 <span class="cart-counter">{{ cart_items_count }}</span>
                             </a>
@@ -67,7 +67,7 @@
                     </a>
                     {% else %}
                     <li><a class="nav-link" href="{% url 'register' %}"><img src="{% static 'images/user.svg' %}"></a></li>
-                    <li><a class="nav-link" href="/cart"><img src="{% static 'images/cart.svg' %}"></a></li>
+                    <li><a class="nav-link" href="{% url 'cart' %}"><img src="{% static 'images/cart.svg' %}"></a></li>
                   </ul>
                   {% endif %}
                 </div>
@@ -83,8 +83,8 @@
                         <div class="col-lg-5">
                             <div class="intro-excerpt">
                                 <h1>Blog</h1>
-                                <p class="mb-4">Donec vitae odio quis nisl dapibus malesuada. Nullam ac aliquet velit. Aliquam vulputate velit imperdiet dolor tempor tristique.</p>
-                                <p><a href="/shop" class="btn btn-secondary me-2">Shop Now</a><a href="/about" class="btn btn-white-outline">Explore</a></p>
+                                <p class="mb-4">Stay updated with our latest blog posts on furniture trends, interior design tips, and home decor ideas.</p>
+                                <p><a href="{% url 'shop' %}" class="btn btn-secondary me-2">Shop Now</a><a href="{% url 'about' %}" class="btn btn-white-outline">Explore</a></p>
                             </div>
                         </div>
 						<div class="col-lg-7 col-md-8 col-sm-12">
@@ -246,7 +246,7 @@
 
                                             <div class="testimonial-block text-center">
                                                 <blockquote class="mb-5">
-                                                    <p>&ldquo;Donec facilisis quam ut purus rutrum lobortis. Donec vitae odio quis nisl dapibus malesuada. Nullam ac aliquet velit. Aliquam vulputate velit imperdiet dolor tempor tristique. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Integer convallis volutpat dui quis scelerisque.&rdquo;</p>
+                                                    <p>&ldquo;The quality of the furniture is outstanding. The customer service team was very helpful and the delivery was prompt. Highly recommend!&rdquo;</p>
                                                 </blockquote>
 
                                                 <div class="author-info">
@@ -353,8 +353,8 @@
 
                 <div class="row g-5 mb-5">
                     <div class="col-lg-4">
-                        <div class="mb-4 footer-logo-wrap"><a href="#" class="footer-logo">Furni<span>.</span></a></div>
-                        <p class="mb-4">Donec facilisis quam ut purus rutrum lobortis. Donec vitae odio quis nisl dapibus malesuada. Nullam ac aliquet velit. Aliquam vulputate velit imperdiet dolor tempor tristique. Pellentesque habitant</p>
+                        <div class="mb-4 footer-logo-wrap"><a href="{% url 'index' %}" class="footer-logo">Furni<span>.</span></a></div>
+                        <p class="mb-4">We provide high-quality furniture and interior design solutions to make your home beautiful and comfortable. Explore our wide range of products and services.</p>
 
                         <ul class="list-unstyled custom-social">
                             <li><a href="#"><span class="fa fa-brands fa-facebook-f"></span></a></li>
@@ -368,10 +368,10 @@
                         <div class="row links-wrap">
                             <div class="col-6 col-sm-6 col-md-3">
                                 <ul class="list-unstyled">
-                                    <li><a href="#">About us</a></li>
-                                    <li><a href="#">Services</a></li>
-                                    <li><a href="#">Blog</a></li>
-                                    <li><a href="#">Contact us</a></li>
+                                    <li><a href="{% url 'about' %}">About us</a></li>
+                                    <li><a href="{% url 'services' %}">Services</a></li>
+                                    <li><a href="{% url 'blog' %}">Blog</a></li>
+                                    <li><a href="{% url 'contact' %}">Contact us</a></li>
                                 </ul>
                             </div>
 
