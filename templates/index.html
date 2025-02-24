@@ -86,7 +86,7 @@
     <nav class="custom-navbar navbar navbar navbar-expand-md navbar-dark bg-dark" arial-label="Furni navigation bar">
 
         <div class="container">
-            <a class="navbar-brand" href="/">Furni<span>.</span></a>
+            <a class="navbar-brand" href="{% url 'index' %}">Furni<span>.</span></a>
 
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarsFurni" aria-controls="navbarsFurni" aria-expanded="false" aria-label="Toggle navigation">
 					<span class="navbar-toggler-icon"></span>
@@ -96,20 +96,20 @@
             <div class="collapse navbar-collapse" id="navbarsFurni">
                 <ul class="custom-navbar-nav navbar-nav ms-auto mb-2 mb-md-0">
                     <li class="nav-item active">
-                        <a class="nav-link" href="/">Home</a>
+                        <a class="nav-link" href="{% url 'index' %}">Home</a>
                     </li>
-                    <li><a class="nav-link" href="/shop">Shop</a></li>
-                    <li><a class="nav-link" href="/about">About us</a></li>
-                    <li><a class="nav-link" href="/services">Services</a></li>
-                    <li><a class="nav-link" href="/blog">Blog</a></li>
-                    <li><a class="nav-link" href="/contact">Contact us</a></li>
+                    <li><a class="nav-link" href="{% url 'shop' %}">Shop</a></li>
+                    <li><a class="nav-link" href="{% url 'about' %}">About us</a></li>
+                    <li><a class="nav-link" href="{% url 'services' %}">Services</a></li>
+                    <li><a class="nav-link" href="{% url 'blog' %}">Blog</a></li>
+                    <li><a class="nav-link" href="{% url 'contact' %}">Contact us</a></li>
                 </ul>
 
                 <ul class="custom-navbar-cta navbar-nav mb-2 mb-md-0 ms-5">
                     <ul class="custom-navbar-cta navbar-nav mb-2 mb-md-0 ms-5">
 						{% if user.is_authenticated %}
 							<li>
-								<a class="nav-link cart-icon-wrapper" href="/cart">
+								<a class="nav-link cart-icon-wrapper" href="{% url 'cart' %}">
 									<i class="fas fa-shopping-cart"></i>
 									<span class="cart-counter">{{ cart_items_count }}</span>
 								</a>
@@ -119,7 +119,7 @@
                         </a>
                         {% else %}
 						<li><a class="nav-link" href="{% url 'register' %}"><img src="{% static 'images/user.svg' %}"></a></li>
-						<li><a class="nav-link" href="/cart"><img src="{% static 'images/cart.svg' %}"></a></li>
+						<li><a class="nav-link" href="{% url 'cart' %}"><img src="{% static 'images/cart.svg' %}"></a></li>
 					  </ul>
 					  {% endif %}
             </div>
@@ -144,12 +144,15 @@
                         {% endif %}
                         <h1>Modern Interior <span class="d-block">Design Studio</span></h1>
                         <p class="mb-4">At Furni, we blend innovation and elegance to create interiors that reflect your personality. Award-winning designs since 2010.</p>
-                        <p><a href="/shop" class="btn btn-secondary me-2">Shop Now</a><a href="/shop" class="btn btn-white-outline">Explore</a></p>
+                        <p>
+                            <a href="{% url 'shop' %}" class="btn btn-secondary me-2">Shop Now</a>
+                            <a href="{% url 'shop' %}" class="btn btn-white-outline">Explore</a>
+                        </p>
                     </div>
                 </div>
                 <div class="col-lg-7 col-md-8 col-sm-12">
                     <div class="hero-img-wrap row">
-                        <img src="{% static 'images/couch.png'%}" class="img-fluid">
+                        <img src="{% static 'images/couch.png'%}" class="img-fluid"></img>
                     </div>
                 </div>
             </div>
@@ -166,7 +169,7 @@
                 <div class="col-md-12 col-lg-3 mb-5 mb-lg-0">
                     <h2 class="mb-4 section-title">Crafted with excellent material.</h2>
                     <p class="mb-4">Designed for elegance. Crafted for comfort. Our premium furniture collection blends aesthetics with durability to elevate your home. </p>
-                    <p><a href="shop/" class="btn">Explore</a></p>
+                    <p><a href="{% url 'shop' %}" class="btn">Explore</a></p>
                 </div>
                 <!-- End Column 1 -->
                 {% for chair in random_items %}
@@ -198,7 +201,7 @@
             <div class="row justify-content-between">
                 <div class="col-lg-6">
                     <h2 class="section-title">Why Choose Us</h2>
-                    <p>Donec vitae odio quis nisl dapibus malesuada. Nullam ac aliquet velit. Aliquam vulputate velit imperdiet dolor tempor tristique.</p>
+                    <p>Experience excellence in furniture and interior design. Our commitment to quality, innovation, and customer satisfaction sets us apart.</p>
 
                     <div class="row my-5">
                         <div class="col-6 col-md-6">
@@ -280,7 +283,7 @@
                         <li>High-quality and stylish furniture recommendations</li>
                         <li> Personalized interior design solutions</li>
                     </ul>
-                    <p><a herf="#" class="btn">Explore</a></p>
+                    <p><a herf="{% url 'about' %}" class="btn">Explore</a></p>
                 </div>
             </div>
         </div>
@@ -362,8 +365,7 @@
 
                                         <div class="testimonial-block text-center">
                                             <blockquote class="mb-5">
-                                                <p>&ldquo;Donec facilisis quam ut purus rutrum lobortis. Donec vitae odio quis nisl dapibus malesuada. Nullam ac aliquet velit. Aliquam vulputate velit imperdiet dolor tempor tristique. Pellentesque habitant
-                                                    morbi tristique senectus et netus et malesuada fames ac turpis egestas. Integer convallis volutpat dui quis scelerisque.&rdquo;</p>
+                                                <p>"The quality and design of my new furniture exceeded my expectations. The team was professional and the delivery was right on schedule. I couldn't be happier with my purchase!"</p>
                                             </blockquote>
 
                                             <div class="author-info">
@@ -526,7 +528,7 @@
             <div class="row g-5 mb-5">
                 <div class="col-lg-4">
                     <div class="mb-4 footer-logo-wrap"><a href="#" class="footer-logo">Furni<span>.</span></a></div>
-                    <p class="mb-4">Donec facilisis quam ut purus rutrum lobortis. Donec vitae odio quis nisl dapibus malesuada. Nullam ac aliquet velit. Aliquam vulputate velit imperdiet dolor tempor tristique. Pellentesque habitant</p>
+                    <p class="mb-4">We're dedicated to transforming houses into homes through thoughtfully designed furniture and exceptional customer service. Your comfort and satisfaction are our top priorities.</p>
 
                     <ul class="list-unstyled custom-social">
                         <li><a href="#"><span class="fa fa-brands fa-facebook-f"></span></a></li>
@@ -540,10 +542,10 @@
                     <div class="row links-wrap">
                         <div class="col-6 col-sm-6 col-md-3">
                             <ul class="list-unstyled">
-                                <li><a href="#">About us</a></li>
-                                <li><a href="#">Services</a></li>
-                                <li><a href="#">Blog</a></li>
-                                <li><a href="#">Contact us</a></li>
+                                <li><a href="{% url 'about' %}">About us</a></li>
+                                <li><a href="{% url 'services' %}">Services</a></li>
+                                <li><a href="{% url 'blog' %}">Blog</a></li>
+                                <li><a href="{% url 'contact' %}">Contact us</a></li>
                             </ul>
                         </div>
 
